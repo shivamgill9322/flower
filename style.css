@@ -144,7 +144,7 @@ header .fa-bars{
     width: 100%;
     border: 1.5rem solid #fff;
     border-radius: .5rem;
-    box-shadow: 0.5rem 1rem rgba(0,0,0,.1);
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
     height:100%;
     object-fit: cover;
 }
@@ -305,11 +305,11 @@ header .fa-bars{
 
 .review .box-container .box{
     flex: 1 1 30rem;
-    box-shadow: 0.5rem 1.5rem rgba(0,0,0,.1);
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
     border-radius: .5rem;
     padding: 3rem 2rem;
     position: relative;
-    border: 1rem solid rgba(0,0,0,.1);
+    border: .1rem solid rgba(0,0,0,.1);
 }
 .review .box-container .box .fa-quote-right{
     position: absolute;
@@ -322,11 +322,11 @@ header .fa-bars{
     color: var(--pink);
     font-size: 2rem;
 }
-.review .box-container .box .stars p{
+.review .box-container .box p{
     color: #999;
     font-size: 1.5rem;
     line-height: 1.5;
-    padding: 2rem;
+    padding: 1rem 0;
 }
 .review .box-container .box .user{
     display: flex;
@@ -376,9 +376,9 @@ header .fa-bars{
     font-size: 1.7rem;
     color: #333;
     text-transform: none;
-    border: 1rem solid rgba(0,0,0,.1);
+    border: .1rem solid rgba(0,0,0,.1);
     border-radius: .5rem;
-    margin: 7rem 0;
+    margin: 1rem 0;
     width: 100%;
 }
 .contact .row form .box:focus{
@@ -472,7 +472,7 @@ header .fa-bars{
         margin: 1.5rem;
         padding: 1.5rem;
         background: #fff;
-        border: .1rem solid rgba(0,0,0,1);
+        border: .1rem solid rgba(0,0,0,.1);
         display: block;
     }
     .home .content h3{
@@ -505,3 +505,340 @@ header .fa-bars{
     font-size: 3rem;
     }
 }
+
+/* Modal & Toast Overlay Styles for Full Backend Integration */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-card {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.2);
+    position: relative;
+}
+.modal-card .close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: #666;
+}
+.modal-card h2 {
+    font-size: 2.5rem;
+    color: var(--pink);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.modal-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.modal-card form input {
+    padding: 1.2rem 1.5rem;
+    font-size: 1.6rem;
+    border: .1rem solid #ccc;
+    border-radius: .5rem;
+}
+.modal-card form .btn {
+    margin-top: 1rem;
+    cursor: pointer;
+    background: var(--pink);
+    color: #fff;
+    font-size: 1.8rem;
+    border: none;
+}
+.modal-card form .btn:hover {
+    background: #333;
+}
+.modal-card .switch-mode {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #666;
+}
+.modal-card .switch-mode a {
+    color: var(--pink);
+    font-weight: bold;
+    cursor: pointer;
+}
+.toast-notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #333;
+    color: #fff;
+    padding: 1.2rem 2.5rem;
+    border-radius: 3rem;
+    font-size: 1.6rem;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,0.3);
+    z-index: 10001;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+.user-badge {
+    position: relative;
+    display: inline-block;
+}
+.user-badge .status-dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1rem;
+    height: 1rem;
+    background-color: #2ec4b6;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+/* Header Cart Count Badge */
+header .icons a.fa-shopping-cart {
+    position: relative;
+}
+.cart-badge {
+    position: absolute;
+    top: -0.8rem;
+    right: -1rem;
+    background: var(--pink);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.2rem 0.6rem;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+/* Cart Drawer Slide-Over */
+.cart-drawer-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 10002;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.cart-drawer-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.cart-drawer {
+    position: fixed;
+    top: 0; right: -400px;
+    width: 100%; max-width: 380px; height: 100%;
+    background: #fff;
+    z-index: 10003;
+    box-shadow: -0.5rem 0 2rem rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    transition: right 0.3s ease;
+}
+.cart-drawer.active {
+    right: 0;
+}
+.cart-drawer-header {
+    padding: 2rem;
+    background: #f9f9f9;
+    border-bottom: 0.1rem solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart-drawer-header h2 {
+    font-size: 2.2rem;
+    color: #333;
+}
+.cart-drawer-header h2 span {
+    color: var(--pink);
+}
+.cart-drawer-header .close-cart {
+    font-size: 2.8rem;
+    cursor: pointer;
+    color: #666;
+}
+.cart-drawer-header .close-cart:hover {
+    color: var(--pink);
+}
+.cart-drawer-body {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+.cart-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #888;
+}
+.cart-empty i {
+    font-size: 5rem;
+    color: #ddd;
+    margin-bottom: 1.5rem;
+}
+.cart-empty p {
+    font-size: 1.8rem;
+}
+.cart-item-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 0.1rem solid #eee;
+}
+.cart-item-row img {
+    width: 6.5rem;
+    height: 6.5rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+.cart-item-info {
+    flex: 1;
+}
+.cart-item-info h4 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+.cart-item-info .item-price {
+    font-size: 1.5rem;
+    color: var(--pink);
+    font-weight: bold;
+}
+.cart-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+}
+.cart-qty-btn {
+    width: 2.4rem;
+    height: 2.4rem;
+    background: #eee;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.cart-qty-btn:hover {
+    background: var(--pink);
+    color: #fff;
+}
+.cart-item-qty span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    min-width: 2rem;
+    text-align: center;
+}
+.cart-item-remove {
+    font-size: 1.8rem;
+    color: #e74c3c;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+.cart-item-remove:hover {
+    color: #c0392b;
+}
+.cart-drawer-footer {
+    padding: 2rem;
+    background: #f9f9f9;
+    border-top: 0.1rem solid #eee;
+}
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+.cart-total-row span.amount {
+    color: var(--pink);
+}
+.checkout-btn {
+    width: 100%;
+    padding: 1.4rem;
+    background: var(--pink);
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.checkout-btn:hover {
+    background: #333;
+}
+
+/* Customer Review Edit / Delete Controls */
+.review .box {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.review .box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.1);
+}
+.review-actions {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 10;
+}
+.review-actions button {
+    background: #fff;
+    border: 0.1rem solid #eee;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 0.2rem 0.5rem rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+.review-actions .edit-review-btn {
+    color: #2980b9;
+}
+.review-actions .edit-review-btn:hover {
+    background: #2980b9;
+    color: #fff;
+}
+.review-actions .delete-review-btn {
+    color: #e74c3c;
+}
+.review-actions .delete-review-btn:hover {
+    background: #e74c3c;
+    color: #fff;
+}
+
